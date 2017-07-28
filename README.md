@@ -1,1 +1,5 @@
-# otus_java_2017_04_prj
+﻿Репозиторий для проекта на курсе Otus-Java
+----
+Владелец: Оруджев Александр
+
+Owner: Orudzhev Alexander
