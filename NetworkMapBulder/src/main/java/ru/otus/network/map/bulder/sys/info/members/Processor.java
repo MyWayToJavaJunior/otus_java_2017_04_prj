@@ -4,8 +4,6 @@ import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.HardwareAbstractionLayer;
 
-import java.util.Arrays;
-
 public class Processor implements ISysInfoMember{
     private String family;
     private String identifier;
@@ -16,12 +14,7 @@ public class Processor implements ISysInfoMember{
     private int phisicalProcessorsCount;
     private int logicalProcessorsCount;
 
-    private String architecture;
-
-    private double avgCPULoad;
-    private double[] perProcessorsCPULoad;
-
-    private double temperature;
+    private String isCpu64bit;
 
     @Override
     public void fillFrom(SystemInfo si){
@@ -37,15 +30,7 @@ public class Processor implements ISysInfoMember{
         phisicalProcessorsCount = proc.getPhysicalProcessorCount();
         logicalProcessorsCount = proc.getLogicalProcessorCount();
 
-        architecture = proc.isCpu64bit()? "x64": "x86";
-
-        avgCPULoad = proc.getSystemCpuLoadBetweenTicks() * 100;
-        perProcessorsCPULoad = proc.getProcessorCpuLoadBetweenTicks();
-        for (int i = 0; i < perProcessorsCPULoad.length; i++) {
-            perProcessorsCPULoad[i] *= 100;
-        }
-
-        temperature = hard.getSensors().getCpuTemperature();
+        isCpu64bit = proc.isCpu64bit()? "yes": "no";
     }
 
     @Override
@@ -58,10 +43,7 @@ public class Processor implements ISysInfoMember{
                 ", processorID='" + processorID + '\'' + "\n" +
                 ", phisicalProcessorsCount=" + phisicalProcessorsCount + "\n" +
                 ", logicalProcessorsCount=" + logicalProcessorsCount + "\n" +
-                ", architecture='" + architecture + '\'' + "\n" +
-                ", avgCPULoad=" + avgCPULoad + "\n" +
-                ", perProcessorsCPULoad=" + Arrays.toString(perProcessorsCPULoad) + "\n" +
-                ", perProcessorsCPULoad=" + Arrays.toString(perProcessorsCPULoad) + "\n" +
+                ", isCpu64bit='" + isCpu64bit + '\'' + "\n" +
                 '}';
     }
 }
