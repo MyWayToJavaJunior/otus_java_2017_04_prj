@@ -5,6 +5,8 @@ import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
 import oshi.hardware.HardwareAbstractionLayer;
 
+import java.util.Arrays;
+
 public class PrefomanceInfo implements ISysInfoMember {
     private double avgCPULoad;
     private double[] perProcessorsCPULoad;
@@ -45,6 +47,16 @@ public class PrefomanceInfo implements ISysInfoMember {
         }
     }
 
-
-
+    @Override
+    public String toString() {
+        return "PrefomanceInfo{" +
+                "avgCPULoad='" + avgCPULoad + '\'' + "\n" +
+                ", perProcessorsCPULoad='" + Arrays.toString(perProcessorsCPULoad) + '\'' + "\n" +
+                ", temperature='" + temperature + '\'' + "\n" +
+                ", memoryUsedBytes='" + memoryUsedBytes + '\'' + "\n" +
+                ", memoryUsedPercents='" + memoryUsedPercents + '\'' + "\n" +
+                ", swapUsedBytes='" + swapUsedBytes + '\'' + "\n" +
+                ", swapUsedPercents='" + swapUsedPercents + '\'' + "\n" +
+                '}';
+    }
 }
