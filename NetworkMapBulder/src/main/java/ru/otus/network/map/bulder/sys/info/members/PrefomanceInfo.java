@@ -4,6 +4,7 @@ import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
 import oshi.hardware.HardwareAbstractionLayer;
+import ru.otus.network.map.bulder.FormatsHepler;
 
 import java.util.Arrays;
 
@@ -13,10 +14,10 @@ public class PrefomanceInfo implements ISysInfoMember {
 
     private double temperature;
 
-    private double memoryUsedBytes;
+    private long memoryUsedBytes;
     private double memoryUsedPercents;
 
-    private double swapUsedBytes;
+    private long swapUsedBytes;
     private double swapUsedPercents;
 
     @Override
@@ -33,7 +34,7 @@ public class PrefomanceInfo implements ISysInfoMember {
 
         temperature = hard.getSensors().getCpuTemperature();
 
-        memoryUsedBytes = memory.getAvailable();
+        memoryUsedBytes = memory.getTotal() - memory.getAvailable();
         memoryUsedPercents = 0;
 
         if (memory.getTotal() > 0) {
@@ -49,14 +50,14 @@ public class PrefomanceInfo implements ISysInfoMember {
 
     @Override
     public String toString() {
-        return "PrefomanceInfo{" +
-                "avgCPULoad='" + avgCPULoad + '\'' + "\n" +
+        return "PrefomanceInfo{" + "\n" +
+                "avgCPULoad='" + FormatsHepler.formatPercents(avgCPULoad) + '\'' + "\n" +
                 ", perProcessorsCPULoad='" + Arrays.toString(perProcessorsCPULoad) + '\'' + "\n" +
-                ", temperature='" + temperature + '\'' + "\n" +
-                ", memoryUsedBytes='" + memoryUsedBytes + '\'' + "\n" +
-                ", memoryUsedPercents='" + memoryUsedPercents + '\'' + "\n" +
-                ", swapUsedBytes='" + swapUsedBytes + '\'' + "\n" +
-                ", swapUsedPercents='" + swapUsedPercents + '\'' + "\n" +
+                ", temperature='" + FormatsHepler.formatFloatDef(temperature) + '\'' + "\n" +
+                ", memoryUsed='" + FormatsHepler.formatBytesAsMB(memoryUsedBytes) + '\'' + "\n" +
+                ", memoryUsedPercents='" + FormatsHepler.formatPercents(memoryUsedPercents) + '\'' + "\n" +
+                ", swapUsed='" + FormatsHepler.formatBytesAsMB(swapUsedBytes) + '\'' + "\n" +
+                ", swapUsedPercents='" + FormatsHepler.formatPercents(swapUsedPercents) + '\'' + "\n" +
                 '}';
     }
 }

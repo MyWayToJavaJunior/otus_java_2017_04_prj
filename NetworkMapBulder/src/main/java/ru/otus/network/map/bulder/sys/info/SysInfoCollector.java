@@ -3,9 +3,7 @@ package ru.otus.network.map.bulder.sys.info;
 
 
 import oshi.SystemInfo;
-import ru.otus.network.map.bulder.sys.info.members.ISysInfoMember;
-import ru.otus.network.map.bulder.sys.info.members.PrefomanceInfo;
-import ru.otus.network.map.bulder.sys.info.members.Processor;
+import ru.otus.network.map.bulder.sys.info.members.*;
 
 public class SysInfoCollector {
     public static void main(String[] args) {
@@ -17,7 +15,15 @@ public class SysInfoCollector {
         ISysInfoMember perfomaceInfo = new PrefomanceInfo();
         perfomaceInfo.fillFrom(systemInfo);
 
+        ISysInfoMember operatingSystem = new OperatingSystem();
+        operatingSystem.fillFrom(systemInfo);
+
+        ISysInfoMember processes = new Processes();
+        processes.fillFrom(systemInfo);
+
+        System.out.println(operatingSystem);
         System.out.println(processor);
         System.out.println(perfomaceInfo);
+        System.out.println(processes);
     }
 }

@@ -35,7 +35,7 @@ public class Processor implements ISysInfoMember{
 
     @Override
     public String toString() {
-        return "Processor{" +
+        return "Processor{" + "\n" +
                 "family='" + family + '\'' + "\n" +
                 ", identifier='" + identifier + '\'' + "\n" +
                 ", model='" + model + '\'' + "\n" +

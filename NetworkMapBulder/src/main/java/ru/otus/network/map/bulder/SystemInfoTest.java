@@ -183,10 +183,14 @@ public class SystemInfoTest {
         System.out.println("   PID  %CPU %MEM       VSZ       RSS Name");
         for (int i = 0; i < procs.size() && i < 5; i++) {
             OSProcess p = procs.get(i);
-            System.out.format(" %5d %5.1f %4.1f %9s %9s %s%n", p.getProcessID(),
+            System.out.format(" %5d %5.1f %4.1f %9s %9s %s%n",
+
+                    p.getProcessID(),
                     100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
-                    100d * p.getResidentSetSize() / memory.getTotal(), FormatUtil.formatBytes(p.getVirtualSize()),
-                    FormatUtil.formatBytes(p.getResidentSetSize()), p.getName());
+                    100d * p.getResidentSetSize() / memory.getTotal(),
+                    FormatUtil.formatBytes(p.getVirtualSize()),
+                    FormatUtil.formatBytes(p.getResidentSetSize()),
+                    p.getName());
         }
     }
 
