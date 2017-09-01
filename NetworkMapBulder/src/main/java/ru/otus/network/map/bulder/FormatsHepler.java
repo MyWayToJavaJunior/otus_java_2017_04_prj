@@ -1,11 +1,19 @@
 package ru.otus.network.map.bulder;
 
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
+
 import java.text.DecimalFormat;
 
 public class FormatsHepler {
     public static String formatFloat(String fmt, double d) {
         DecimalFormat df = new DecimalFormat(fmt);
         return df.format(d);
+    }
+
+    public static String formatDate(LocalDate date) {
+        if (date == null) return "";
+        return date.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
     }
 
     public static String formatFloatDef(double d) {

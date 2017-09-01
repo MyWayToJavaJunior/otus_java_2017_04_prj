@@ -99,7 +99,6 @@ public class SystemInfoTest {
         LOG.info("Checking USB Devices...");
         printUsbDevices(hal.getUsbDevices(true));
     }
-
     private static void printComputerSystem(final ComputerSystem computerSystem) {
 
         System.out.println("manufacturer: " + computerSystem.getManufacturer());
